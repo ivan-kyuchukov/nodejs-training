@@ -30,8 +30,8 @@ app.use((req, res, next) => {
 });
 
 // Route request handlers
-app.use('/products', productRoutes);
-app.use('/orders', orderRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
 app.use((req, res, next) => {
   const error = new Error('Not found');

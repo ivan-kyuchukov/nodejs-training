@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 const Product = require('../models/product');
+const getBaseUrl = require('../../global/utils');
 
 // Get all
 router.get('/', (req, res, next) => {
@@ -21,7 +22,7 @@ router.get('/', (req, res, next) => {
               _id: doc._id,
               request: {
                 type: 'GET',
-                url: 'http://localhost:3000/products/' + doc._id
+                url: getUrl() + doc._id
               }
             }
           })
@@ -62,7 +63,7 @@ router.get('/:id', (req, res, next) => {
         error: error
       });
     });
-})
+});
 
 // Post
 router.post('/', (req, res, next) => {
@@ -108,7 +109,7 @@ router.put('/:id', (req, res, next) => {
       error: error
     });
   });
-})
+});
 
 // Delete
 router.delete('/:id', (req, res, next) => {
@@ -124,7 +125,10 @@ router.delete('/:id', (req, res, next) => {
         error: error
       });
     })
-  
-})
+});
+
+function getUrl() {
+  return getBaseUrl() + 'products/';
+}
 
 module.exports = router;
